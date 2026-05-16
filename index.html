@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tom AI 補教提效顧問</title>
+<title>Tom AI 補教提效顧問｜免費領取補習班 AI 實戰導入知識地圖</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -161,6 +161,29 @@ section{padding:88px 2rem;}
 .ba-vl.hi-g{color:var(--green);font-weight:700;font-size:15px;}
 .ba-arr{text-align:center;font-size:22px;color:var(--g400);padding:6px 0;}
 
+
+/* ── LEAD MAGNET / KNOWLEDGE MAP ── */
+#leadmagnet{background:linear-gradient(145deg,#F8FAFC 0%,#EFF6FF 58%,#FFFFFF 100%);padding:88px 2rem;}
+.lead-card{max-width:1100px;margin:0 auto;background:#fff;border:1px solid var(--g200);border-radius:28px;box-shadow:var(--shm);overflow:hidden;display:grid;grid-template-columns:1fr 1.08fr;align-items:center;}
+.lead-copy{padding:56px 48px;}
+.lead-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--blue-l);color:#1E40AF;border-radius:22px;padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:20px;}
+.lead-title{font-size:clamp(26px,3.3vw,42px);font-weight:900;line-height:1.2;color:var(--navy);margin-bottom:16px;}
+.lead-title .blue{color:var(--blue);}
+.lead-sub{font-size:16px;color:var(--txt-m);line-height:1.8;margin-bottom:26px;}
+.lead-list{list-style:none;margin-bottom:30px;}
+.lead-list li{display:flex;align-items:flex-start;gap:11px;font-size:15px;color:var(--txt-m);padding:8px 0;line-height:1.6;}
+.lead-check{width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;margin-top:1px;}
+.lead-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.lead-note{font-size:13px;color:var(--txt-q);margin-top:14px;line-height:1.6;}
+.lead-preview{background:linear-gradient(160deg,#DBEAFE 0%,#F8FAFC 100%);padding:38px;min-height:420px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.lead-preview::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(37,99,235,.12);right:-100px;top:-80px;}
+.lead-preview::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(245,158,11,.13);left:-70px;bottom:-70px;}
+.map-preview{position:relative;z-index:1;background:#fff;border-radius:18px;box-shadow:0 18px 44px rgba(15,23,42,.18);padding:10px;transform:rotate(-1.5deg);transition:transform .25s,box-shadow .25s;}
+.map-preview:hover{transform:rotate(0deg) translateY(-4px);box-shadow:0 24px 56px rgba(15,23,42,.22);}
+.map-preview img{display:block;width:100%;height:auto;border-radius:12px;filter:saturate(.95);}
+.map-lock{position:absolute;right:22px;bottom:22px;z-index:2;background:rgba(15,23,42,.88);color:#fff;border-radius:24px;padding:9px 16px;font-size:13px;font-weight:700;box-shadow:var(--sh);}
+@media(max-width:900px){.lead-card{grid-template-columns:1fr}.lead-preview{min-height:auto}.lead-copy{padding:42px 28px}.map-lock{right:18px;bottom:18px}}
+
 /* ── COMPARE TABLE ── */
 #compare{background:#fff;text-align:center;}
 .cmp-title{font-size:clamp(24px,3.5vw,40px);font-weight:900;margin-bottom:52px;}
@@ -276,10 +299,11 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
     <div class="nav-links">
       <a href="#pain">診斷痛點</a>
       <a href="#solution">AI 解決方案</a>
+      <a href="#leadmagnet">免費領資料</a>
       <a href="#about">關於 Tom 老師</a>
       <a href="#compare">超級比一比</a>
     </div>
-    <a href="#cta" class="btn-nav">立即加 LINE 諮詢</a>
+    <a href="#cta" class="btn-nav">免費領取知識地圖</a>
   </div>
 </nav>
 
@@ -300,8 +324,8 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
         將 80% 的行政與招生雜事交給科技，把時間還給教學與你自己。
       </p>
       <div class="hero-btns">
-        <a href="#cta" class="btn-p">立即加 LINE 諮詢 ›</a>
-        <a href="#faq" class="btn-s">預約 10 分鐘免費診斷</a>
+        <a href="#cta" class="btn-p">免費領取知識地圖 ›</a>
+        <a href="#leadmagnet" class="btn-s">先看資料內容</a>
       </div>
       <div class="social-proof">
         <div class="stars-row">
@@ -403,6 +427,36 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
         <div class="sol-hl g">多出 40-80 萬利潤</div>
         <p>24 小時 LINE AI 智能客服不漏接任何諮詢，搭配影音資產化，預期每年額外帶進可觀收益。</p>
         <div class="sol-quote g">「補習班要賺錢，靠的是系統覆蓋率，而非老師工時。」</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── LEAD MAGNET / KNOWLEDGE MAP ─── -->
+<section id="leadmagnet">
+  <div class="lead-card fade-up">
+    <div class="lead-copy">
+      <div class="lead-kicker">📌 免費領取資料</div>
+      <h2 class="lead-title">補習班老闆必看<br><span class="blue">AI 實戰導入知識地圖</span></h2>
+      <p class="lead-sub">
+        一張圖看懂補習班如何用 AI 從備課、教學內容、招生宣傳、LINE 私域到試聽成交，建立一套可複製的業績增長閉環。
+      </p>
+      <ul class="lead-list">
+        <li><span class="lead-check">✓</span>看懂 AI 可以先導入哪 6 大模組，避免盲目買工具。</li>
+        <li><span class="lead-check">✓</span>快速判斷你的補習班應先改善備課、招生、客服還是成交。</li>
+        <li><span class="lead-check">✓</span>加 LINE 領取後，可預約 10 分鐘免費經營診斷。</li>
+      </ul>
+      <div class="lead-actions">
+        <a href="#cta" class="btn-p">加 LINE 免費領取 ›</a>
+        <a href="#modules" class="btn-s">先看導入模組</a>
+      </div>
+      <div class="lead-note">領取後會收到《補習班 AI 實戰導入知識地圖》與 AI 導入優先順序建議。</div>
+    </div>
+    <div class="lead-preview">
+      <div class="map-preview">
+        <img src="ai-knowledge-map.png" alt="補習班 AI 實戰導入知識地圖預覽">
+        <div class="map-lock">加 LINE 領完整 PDF</div>
       </div>
     </div>
   </div>
@@ -644,26 +698,26 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
 <!-- ─── CTA ─── -->
 <section id="cta">
   <div class="ctr">
-    <h2 class="cta-title fade-up">準備好開始了嗎？</h2>
+    <h2 class="cta-title fade-up">免費領取補習班 AI 實戰導入知識地圖</h2>
     <div class="cta-badge fade-up">
-      <span class="pulsedot"></span>本月限量 30 名，目前剩 8 位
+      <span class="pulsedot"></span>領取後可預約 10 分鐘 1 對 1 經營診斷
     </div>
     <div class="cta-card fade-up">
       <div>
-        <div class="cta-old">原價 NT$ 30,000</div>
-        <div class="cta-new">限時免費 <span>諮詢</span></div>
+        <div class="cta-old">原本需要自己慢慢摸索 AI 工具與流程</div>
+        <div class="cta-new">免費領取 <span>PDF 資料包</span></div>
         <ul class="cta-list">
-          <li><span class="cta-chk">✓</span>2026 補教 AI 萬能指令包</li>
+          <li><span class="cta-chk">✓</span>《補習班 AI 實戰導入知識地圖》完整 PDF</li>
+          <li><span class="cta-chk">✓</span>六大導入模組：備課、內容、宣傳、私域、成交、續班</li>
+          <li><span class="cta-chk">✓</span>補教 AI 萬能指令包與工作流方向</li>
           <li><span class="cta-chk">✓</span>LINE AI 智能客服佈置指南</li>
-          <li><span class="cta-chk">✓</span>教務提效自動化標準工作流</li>
-          <li><span class="cta-chk">✓</span>社群圖文內容批量生產工作流</li>
-          <li><span class="cta-chk">✓</span> 10 分鐘 1 v 1 經營診斷</li>
+          <li><span class="cta-chk">✓</span>可加碼預約 10 分鐘 1 v 1 經營診斷</li>
         </ul>
-        <button class="btn-cta">立即卡位加 LINE</button>
-        <button class="btn-cta2">了解更多細節</button>
+        <button class="btn-cta">加 LINE 免費領取知識地圖</button>
+        <button class="btn-cta2">我想先了解 AI 導入流程</button>
       </div>
      <div class="qr-side">
-  <div class="qr-title">請選擇一位顧問加入 LINE：</div>
+  <div class="qr-title">掃描 QR Code，免費領取資料：</div>
   <div class="qr-row">
     <div class="qr-block">
       <div class="qr-img" style="padding:0; overflow:hidden; border:none;">
