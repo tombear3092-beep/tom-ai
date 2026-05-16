@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tom AI 補教提效顧問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#2563EB;--blue-d:#1D4ED8;--blue-l:#DBEAFE;--blue-p:#EFF6FF;
+  --navy:#0F172A;--navy-m:#1E293B;
+  --red:#DC2626;--red-l:#FEE2E2;
+  --green:#059669;--green-l:#D1FAE5;
+  --amber:#F59E0B;
+  --g50:#F8FAFC;--g100:#F1F5F9;--g200:#E2E8F0;--g400:#94A3B8;--g600:#475569;--g800:#1E293B;
+  --txt:#0F172A;--txt-m:#334155;--txt-q:#64748B;
+  --r:16px;--rs:8px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.06);
+  --shm:0 8px 32px rgba(0,0,0,.1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans TC',-apple-system,sans-serif;color:var(--txt);background:#fff;line-height:1.65;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--g200);transition:box-shadow .25s;}
+nav.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.1);}
+.nav-w{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:68px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-ic{width:36px;height:36px;border-radius:9px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;letter-spacing:-.5px;}
+.logo-tx{font-weight:700;font-size:19px;color:var(--navy);}
+.nav-links{display:flex;align-items:center;gap:2.2rem;}
+.nav-links a{text-decoration:none;color:var(--txt-m);font-size:15px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.btn-nav{background:var(--blue);color:#fff;border:none;border-radius:24px;padding:11px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;white-space:nowrap;}
+.btn-nav:hover{background:var(--blue-d);transform:translateY(-1px);}
+
+/* ── HERO ── */
+#hero{padding-top:68px;background:linear-gradient(145deg,#EBF3FF 0%,#E8F2FF 40%,#F0EEFF 100%);min-height:100vh;display:flex;flex-direction:column;}
+.hero-w{max-width:1240px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:72px 2rem 0;flex:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:#FEE2E2;color:#B91C1C;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:22px;}
+.pulsedot{width:8px;height:8px;border-radius:50%;background:#DC2626;animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero-title{font-size:clamp(30px,4vw,52px);font-weight:900;line-height:1.2;margin-bottom:22px;color:var(--navy);}
+.hero-title .red{color:var(--red);}
+.hero-title .blue{color:var(--blue);}
+.hero-sub{font-size:16.5px;color:var(--txt-m);line-height:1.75;margin-bottom:36px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px;}
+.btn-p{background:var(--blue);color:#fff;border:2px solid var(--blue);border-radius:30px;padding:14px 30px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit;text-decoration:none;transition:all .2s;}
+.btn-p:hover{background:var(--blue-d);border-color:var(--blue-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.3);}
+.btn-s{background:#fff;color:var(--navy);border:2px solid var(--g200);border-radius:30px;padding:14px 28px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-s:hover{border-color:var(--blue);color:var(--blue);}
+.social-proof{display:flex;align-items:center;gap:14px;}
+.stars-row{display:flex;gap:2px;}
+.stars-row span{color:var(--amber);font-size:20px;}
+.proof-txt{font-size:14px;color:var(--txt-q);line-height:1.5;}
+.proof-txt strong{color:var(--navy);}
+.hero-img-side{display:flex;justify-content:center;align-items:flex-end;}
+.hero-img-card{background:var(--blue-l);border-radius:24px 24px 0 0;width:100%;max-width:460px;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.hero-img-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:400px;background:linear-gradient(180deg,#C7DEFF 0%,#A0C4FF 100%);font-size:90px;letter-spacing:-10px;}
+
+/* ── STATS ── */
+#stats{background:var(--navy);padding:52px 2rem;}
+.stats-g{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat{text-align:center;padding:20px 24px;border-right:1px solid rgba(255,255,255,.1);}
+.stat:last-child{border-right:none;}
+.stat-n{font-size:44px;font-weight:900;color:#fff;line-height:1;margin-bottom:10px;}
+.stat-n .acc-b{color:#60A5FA;}
+.stat-n .acc-r{color:#F87171;}
+.stat-n .acc-a{color:var(--amber);}
+.stat-l{font-size:14px;color:rgba(255,255,255,.55);}
+
+/* ── SECTIONS SHARED ── */
+section{padding:88px 2rem;}
+.ctr{max-width:1100px;margin:0 auto;}
+.sec-badge{display:inline-block;padding:5px 18px;border-radius:22px;font-size:12px;font-weight:700;letter-spacing:.06em;margin-bottom:16px;}
+.badge-pink{background:#FCE7EC;color:#BE123C;}
+.badge-blue{background:var(--blue-l);color:#1E40AF;}
+.sec-title{font-size:clamp(26px,3.5vw,42px);font-weight:900;line-height:1.2;margin-bottom:14px;}
+.sec-sub{font-size:17px;color:var(--txt-q);margin-bottom:52px;}
+
+/* ── PAIN POINTS ── */
+#pain{background:#FFF5F5;text-align:center;}
+.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;}
+.pain-card{background:#fff;border-radius:var(--r);padding:34px 28px;box-shadow:var(--sh);text-align:left;transition:transform .2s;}
+.pain-card:hover{transform:translateY(-4px);}
+.pain-icon{width:52px;height:52px;border-radius:50%;background:#FEE2E2;border:2px solid #FCA5A5;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.pain-icon svg{width:24px;height:24px;stroke:#DC2626;fill:none;stroke-width:2.5;stroke-linecap:round;}
+.pain-card h3{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--navy);}
+.pain-card p{font-size:15px;color:var(--txt-q);line-height:1.75;}
+.pain-q{background:var(--blue-l);border-radius:12px;padding:20px 36px;font-size:17px;font-weight:700;color:#1E40AF;display:inline-block;max-width:720px;}
+
+/* ── SOLUTION ── */
+#solution{background:#fff;}
+.sol-title{font-size:clamp(28px,4vw,46px);font-weight:900;margin-bottom:52px;text-align:center;}
+.underline-r{position:relative;display:inline-block;}
+.underline-r::after{content:'';position:absolute;left:0;right:0;bottom:3px;height:4px;background:var(--red);border-radius:2px;}
+.sol-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.sol-card{background:#fff;border:1px solid var(--g200);border-radius:var(--r);padding:34px 28px;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s;}
+.sol-card:hover{transform:translateY(-4px);box-shadow:var(--shm);}
+.sol-ic{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
+.sol-ic.b{background:#DBEAFE;}
+.sol-ic.r{background:#FEE2E2;}
+.sol-ic.g{background:#D1FAE5;}
+.sol-card h3{font-size:20px;font-weight:700;margin-bottom:8px;color:var(--navy);}
+.sol-hl{font-size:22px;font-weight:900;margin-bottom:16px;}
+.sol-hl.b{color:var(--blue);}
+.sol-hl.r{color:var(--red);}
+.sol-hl.g{color:var(--green);}
+.sol-card p{font-size:14px;color:var(--txt-q);line-height:1.75;margin-bottom:18px;}
+.sol-quote{border-left:3px solid var(--blue);padding-left:13px;font-size:13px;color:var(--txt-m);line-height:1.6;}
+.sol-quote.r{border-color:var(--red);}
+.sol-quote.g{border-color:var(--green);}
+
+/* ── ABOUT ── */
+#about{background:var(--g50);padding:88px 2rem;}
+.about-w{max-width:1080px;margin:0 auto;background:#fff;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:var(--shm);}
+.about-l{background:linear-gradient(140deg,#DBEAFE 0%,#BFDBFE 100%);display:flex;align-items:flex-end;justify-content:center;min-height:480px;padding:40px;}
+.about-img{width:260px;height:320px;display:flex;align-items:center;justify-content:center;font-size:80px;letter-spacing:-6px;}
+.about-r{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
+.about-r h2{font-size:30px;font-weight:900;color:var(--navy);margin-bottom:6px;}
+.about-sub{font-size:16px;color:var(--blue);font-weight:600;margin-bottom:28px;}
+.about-list{list-style:none;margin-bottom:30px;}
+.about-list li{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--g100);font-size:16px;color:var(--txt-m);}
+.about-list li:last-child{border-bottom:none;}
+.chk-b{width:24px;height:24px;min-width:24px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:12px;font-weight:700;}
+.about-q{background:var(--blue);color:#fff;border-radius:13px;padding:22px 26px;font-size:15px;font-weight:600;line-height:1.6;}
+
+/* ── MODULES ── */
+#modules{background:var(--g50);}
+.mod-head{text-align:center;margin-bottom:52px;}
+.mod-card{background:#fff;border-radius:20px;margin-bottom:28px;box-shadow:var(--sh);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.mod-text{padding:52px 48px;}
+.mod-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:22px;font-size:13px;font-weight:600;margin-bottom:20px;}
+.mod-badge.b{background:var(--blue-l);color:var(--blue);}
+.mod-badge.r{background:#FEE2E2;color:var(--red);}
+.mod-badge.g{background:var(--green-l);color:var(--green);}
+.mod-text h3{font-size:24px;font-weight:900;color:var(--navy);margin-bottom:22px;line-height:1.3;}
+.mod-list{list-style:none;}
+.mod-list li{display:flex;align-items:flex-start;gap:11px;font-size:15px;color:var(--txt-m);margin-bottom:13px;line-height:1.6;}
+.chk-c{width:20px;min-width:20px;height:20px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:2px;}
+.chk-c.b{border-color:var(--blue);color:var(--blue);}
+.chk-c.r{border-color:var(--red);color:var(--red);}
+.chk-c.g{border-color:var(--green);color:var(--green);}
+.mod-visual{background:var(--g50);padding:44px 36px;display:flex;align-items:center;}
+.ba-box{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--sh);width:100%;}
+.ba-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-radius:11px;margin-bottom:8px;}
+.ba-row.bad{background:#FEF2F2;}
+.ba-row.good-b{background:#EFF6FF;}
+.ba-row.good-r{background:#FFF5F5;}
+.ba-row.good-g{background:#F0FDF4;}
+.ba-lb{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;}
+.ba-lb.bad{color:var(--red);}
+.ba-lb.good-b{color:var(--blue);}
+.ba-lb.good-r{color:var(--red);}
+.ba-lb.good-g{color:var(--green);}
+.ba-vl{font-size:14px;font-weight:500;color:var(--txt-q);}
+.ba-vl.hi-b{color:var(--blue);font-weight:700;font-size:15px;}
+.ba-vl.hi-r{color:var(--red);font-weight:700;font-size:15px;}
+.ba-vl.hi-g{color:var(--green);font-weight:700;font-size:15px;}
+.ba-arr{text-align:center;font-size:22px;color:var(--g400);padding:6px 0;}
+
+/* ── COMPARE TABLE ── */
+#compare{background:#fff;text-align:center;}
+.cmp-title{font-size:clamp(24px,3.5vw,40px);font-weight:900;margin-bottom:52px;}
+.cmp-title .vs{color:var(--txt-q);font-weight:400;margin:0 16px;font-size:0.8em;}
+.cmp-title .tom{color:var(--blue);}
+.cmp-wrap{max-width:800px;margin:0 auto;border:1px solid var(--g200);border-radius:18px;overflow:hidden;}
+table.cmp{width:100%;border-collapse:collapse;}
+table.cmp thead{background:var(--g50);}
+table.cmp th{padding:20px 28px;font-size:15px;font-weight:700;}
+table.cmp th:first-child{text-align:left;color:var(--txt-q);font-weight:500;font-size:14px;}
+table.cmp th:nth-child(2){color:var(--navy);}
+table.cmp th:nth-child(3){color:var(--blue);}
+table.cmp td{padding:20px 28px;font-size:14px;border-top:1px solid var(--g100);}
+table.cmp td:first-child{text-align:left;color:var(--txt-m);font-weight:500;font-size:15px;}
+table.cmp td:nth-child(2),table.cmp td:nth-child(3){text-align:center;}
+table.cmp tr:nth-child(even) td{background:var(--g50);}
+.xi{width:38px;height:38px;border-radius:50%;background:#FEE2E2;border:2px solid #FCA5A5;display:flex;align-items:center;justify-content:center;margin:0 auto;color:var(--red);font-size:17px;font-weight:700;}
+.ci{width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto;color:#fff;font-size:17px;font-weight:700;}
+.cmp-bad{color:var(--txt-q);font-size:12px;margin-top:5px;}
+.cmp-good{color:var(--blue);font-size:12px;font-weight:600;margin-top:5px;}
+
+/* ── BEFORE/AFTER DARK ── */
+#badark{background:var(--navy);padding:80px 2rem;}
+.bad-g{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.bad-card{padding:38px;border-radius:18px;}
+.bad-card.before{background:rgba(220,38,38,.13);border:1px solid rgba(220,38,38,.25);}
+.bad-card.after{background:rgba(37,99,235,.18);border:1px solid rgba(37,99,235,.3);}
+.bad-hd{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;color:#fff;margin-bottom:24px;}
+.bad-list{list-style:none;}
+.bad-list li{color:rgba(255,255,255,.78);font-size:15px;margin-bottom:14px;line-height:1.6;padding-left:4px;}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--g50);}
+.tst-g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.tst-card{background:#fff;border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh);position:relative;transition:transform .2s;}
+.tst-card:hover{transform:translateY(-4px);}
+.tst-stars{display:flex;gap:3px;margin-bottom:16px;}
+.tst-stars span{color:var(--amber);font-size:19px;}
+.tst-qi{position:absolute;top:20px;right:20px;font-size:52px;color:var(--g200);font-family:Georgia,serif;line-height:1;}
+.tst-txt{font-size:14.5px;color:var(--txt-m);line-height:1.75;}
+
+/* ── FAQ ── */
+#faq{background:#fff;text-align:center;}
+.faq-ic-w{width:62px;height:62px;border-radius:50%;background:var(--blue-l);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;}
+.faq-title{font-size:clamp(26px,4vw,38px);font-weight:900;margin-bottom:52px;}
+.faq-list{max-width:780px;margin:0 auto;text-align:left;}
+.faq-item{border-radius:13px;background:var(--g50);margin-bottom:12px;overflow:hidden;}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:22px 26px;font-size:16px;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:inherit;transition:background .2s;}
+.faq-q:hover{background:var(--g100);}
+.faq-arrow{font-size:20px;color:var(--txt-q);transition:transform .35s;display:inline-block;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease,padding .3s;padding:0 26px;font-size:15px;color:var(--txt-q);line-height:1.75;}
+.faq-item.open .faq-a{max-height:220px;padding:0 26px 24px;}
+
+/* ── CTA ── */
+#cta{background:var(--navy);text-align:center;}
+.cta-title{font-size:clamp(26px,4vw,46px);font-weight:900;color:#fff;margin-bottom:18px;}
+.cta-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.18);color:#FCA5A5;border:1px solid rgba(220,38,38,.35);border-radius:22px;padding:7px 20px;font-size:14px;font-weight:600;margin-bottom:44px;}
+.cta-card{background:#fff;border-radius:24px;max-width:880px;margin:0 auto;padding:52px;display:grid;grid-template-columns:1fr auto;gap:52px;text-align:left;}
+.cta-old{font-size:15px;color:var(--txt-q);text-decoration:line-through;margin-bottom:8px;}
+.cta-new{font-size:40px;font-weight:900;color:var(--blue);margin-bottom:26px;line-height:1.1;}
+.cta-new span{font-size:22px;font-weight:500;color:var(--txt-q);}
+.cta-list{list-style:none;margin-bottom:34px;}
+.cta-list li{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--txt-m);padding:9px 0;border-bottom:1px solid var(--g100);}
+.cta-list li:last-child{border-bottom:none;}
+.cta-chk{color:var(--blue);font-size:17px;font-weight:700;}
+.btn-cta{background:var(--blue);color:#fff;border:none;border-radius:12px;padding:18px 32px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;margin-bottom:12px;transition:background .2s,transform .15s;}
+.btn-cta:hover{background:var(--blue-d);transform:translateY(-1px);}
+.btn-cta2{background:#fff;color:var(--txt-m);border:1.5px solid var(--g200);border-radius:12px;padding:14px 32px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;transition:border-color .2s,color .2s;}
+.btn-cta2:hover{border-color:var(--blue);color:var(--blue);}
+.qr-side{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:230px;}
+.qr-title{font-size:15px;color:var(--txt-q);margin-bottom:18px;text-align:center;}
+.qr-row{display:flex;gap:18px;}
+.qr-block{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.qr-img{width:104px;height:104px;background:var(--g100);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--txt-q);text-align:center;padding:8px;border:1px solid var(--g200);}
+.qr-lbl{background:#06C755;color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(255,255,255,.35);font-size:14px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-w{grid-template-columns:1fr;}
+  .hero-img-side{display:none;}
+  .stats-g{grid-template-columns:repeat(2,1fr);}
+  .pain-cards,.sol-cards,.tst-g{grid-template-columns:1fr;}
+  .about-w{grid-template-columns:1fr;}
+  .about-l{min-height:200px;padding:30px;}
+  .mod-card{grid-template-columns:1fr;}
+  .bad-g{grid-template-columns:1fr;}
+  .cta-card{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .stats-g{grid-template-columns:1fr;}
+  section{padding:64px 1.25rem;}
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.fade-up.vis{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <div class="nav-w">
+    <a href="#" class="logo">
+      <div class="logo-ic">T</div>
+      <span class="logo-tx">Tom補教AI</span>
+    </a>
+    <div class="nav-links">
+      <a href="#pain">診斷痛點</a>
+      <a href="#solution">AI 解決方案</a>
+      <a href="#about">關於 Tom 老師</a>
+      <a href="#compare">超級比一比</a>
+    </div>
+    <a href="#cta" class="btn-nav">立即加 LINE 諮詢</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-w">
+    <div class="hero-txt fade-up">
+      <div class="hero-badge">
+        <span class="pulsedot"></span>限量 30 名早鳥優惠
+      </div>
+      <h1 class="hero-title">
+        拒絕「<span class="red">越忙越不賺錢</span>」<br>
+        讓 AI 成為你的<br>
+        <span class="blue">24 小時招生主任</span>
+      </h1>
+      <p class="hero-sub">
+        專為補教業設計的實戰 AI 導入計畫。<br>
+        將 80% 的行政與招生雜事交給科技，把時間還給教學與你自己。
+      </p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-p">立即加 LINE 諮詢 ›</a>
+        <a href="#faq" class="btn-s">預約 10 分鐘免費診斷</a>
+      </div>
+      <div class="social-proof">
+        <div class="stars-row">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div class="proof-txt">超過 <strong>120+</strong> 位補教經營者成功導入<br>限時免費開放諮詢</div>
+      </div>
+    </div>
+    <div class="hero-img-side fade-up" style="transition-delay:.15s">
+     <div class="hero-img-card" style="padding: 0; overflow: hidden; background: #fff;">
+  <img src="tom-ai-mascot.png" alt="Tom AI 顧問" style="width: 100%; height: auto; display: block;">
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<section id="stats">
+  <div class="stats-g">
+    <div class="stat fade-up">
+      <div class="stat-n">120<span class="acc-b">+</span></div>
+      <div class="stat-l">位補教經營者導入</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:.1s">
+      <div class="stat-n">80<span class="acc-b">%</span></div>
+      <div class="stat-l">行政工時節省</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:.2s">
+      <div class="stat-n" style="font-size:34px;padding-top:6px">30-50<span class="acc-r" style="font-size:28px">萬</span></div>
+      <div class="stat-l">1年省下經營成本</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:.3s">
+      <div class="stat-n">4.9<span class="acc-a">★</span></div>
+      <div class="stat-l">顧問服務滿意度</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PAIN POINTS ─── -->
+<section id="pain">
+  <div class="ctr" style="text-align:center">
+    <div class="sec-badge badge-pink fade-up">PAIN POINTS</div>
+    <h2 class="sec-title fade-up">你是這樣的補教老師嗎？</h2>
+    <div class="pain-cards">
+      <div class="pain-card fade-up">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/></svg>
+        </div>
+        <h3>無止盡的行政地獄</h3>
+        <p>晚上 11 點還在回覆重複的家長諮詢，週末躲在教室手動排版題庫與講義，老閒活得像工讀生。</p>
+      </div>
+      <div class="pain-card fade-up" style="transition-delay:.1s">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/></svg>
+        </div>
+        <h3>招生宣傳吃力不討好</h3>
+        <p>花大錢買廣告卻沒效果，自己做圖文又耗時耗力，總是擔心續班率卻抽不出時間思考策略。</p>
+      </div>
+      <div class="pain-card fade-up" style="transition-delay:.2s">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/></svg>
+        </div>
+        <h3>人事成本不斷攀升</h3>
+        <p>請工讀生流動率高，還要花時間重新培訓。想擴大規模卻受限於人力，只能眼看機會流失。</p>
+      </div>
+    </div>
+    <div class="pain-q fade-up">
+      問題不是你不夠努力，是你把太多時間花在不該自己做的事。
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOLUTION ─── -->
+<section id="solution">
+  <div class="ctr">
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="sec-badge badge-blue fade-up">THE SOLUTION</div>
+      <h2 class="sol-title fade-up">AI 幫你<span class="underline-r">一次搞定！</span></h2>
+    </div>
+    <div class="sol-cards">
+      <div class="sol-card fade-up">
+        <div class="sol-ic b">🕐</div>
+        <h3>流程自動化</h3>
+        <div class="sol-hl b">釋放 80% 行政工時</div>
+        <p>擺脫低效率的備課循環。透過 AI 自動化出題、排版與生成詳解，讓老師的效率提升 3 倍以上。</p>
+        <div class="sol-quote">「專業的老師應專注於教學，而非浪費在排版講義。」</div>
+      </div>
+      <div class="sol-card fade-up" style="transition-delay:.1s">
+        <div class="sol-ic r">🎯</div>
+        <h3>招生數位化</h3>
+        <div class="sol-hl r">年省 30-50 萬成本</div>
+        <p>無需高薪聘請設計師或代操。30 秒生成爆款文案、1 分鐘產出社群圖文，讓招生宣傳 24 小時不間斷。</p>
+        <div class="sol-quote r">「透過 AI 轉型，你的手機就是最強大的行銷團隊。」</div>
+      </div>
+      <div class="sol-card fade-up" style="transition-delay:.2s">
+        <div class="sol-ic g">⚡</div>
+        <h3>服務智能化</h3>
+        <div class="sol-hl g">多出 40-80 萬利潤</div>
+        <p>24 小時 LINE AI 智能客服不漏接任何諮詢，搭配影音資產化，預期每年額外帶進可觀收益。</p>
+        <div class="sol-quote g">「補習班要賺錢，靠的是系統覆蓋率，而非老師工時。」</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT TOM ─── -->
+<section id="about">
+  <div class="about-w fade-up">
+    <div class="about-l">
+  <img src="tom-photo.jpg" alt="Tom 老師" style="width: 520px; height: 640px; object-fit: cover; border-radius: 16px; box-shadow: var(--sh);">
+</div>
+    <div class="about-r">
+      <h2>關於 Tom 老師</h2>
+      <div class="about-sub">全台首創為補教提升業績的AI顧問</div>
+      <ul class="about-list">
+        <li><div class="chk-b">✓</div>15+年專案實戰經驗</li>
+           <li><div class="chk-b">✓</div>與30+年教育行業：仲達一樂科技深度合作</li>
+        <li><div class="chk-b">✓</div>已協助120+補教業者提升AI能力</li>
+        <li><div class="chk-b">✓</div>專攻招生與AI結合</li>
+        <li><div class="chk-b">✓</div>不用寫程式，手機與電腦都能操作</li>
+      </ul>
+      <div class="about-q">「擁抱 AI 的 Tom 老師，<br>讓補習班老闆從賺錢又省錢！」</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MODULES ─── -->
+<section id="modules">
+  <div class="ctr">
+    <div class="mod-head fade-up">
+      <h2 class="sec-title">我們如何幫你實現提效？</h2>
+      <p class="sec-sub" style="margin-bottom:0">三大核心模組，徹底翻轉補教經營模式</p>
+    </div>
+
+    <!-- M1 -->
+    <div class="mod-card fade-up">
+      <div class="mod-text">
+        <div class="mod-badge b">🔄 模組一：流程自動化</div>
+        <h3>把耗時的備課與行政，交給 AI 一鍵完成</h3>
+        <ul class="mod-list">
+          <li><div class="chk-c b">✓</div>自動生成專屬題庫與詳解，不再週末加班排版</li>
+          <li><div class="chk-c b">✓</div>一鍵產出聯絡簿、家長通知單，取代人工輸入</li>
+          <li><div class="chk-c b">✓</div>建立標準化流程，新人老師也能快速上手</li>
+        </ul>
+      </div>
+      <div class="mod-visual">
+        <div class="ba-box">
+          <div class="ba-row bad">
+            <div class="ba-lb bad">✕ 過去備課</div>
+            <div class="ba-vl">耗時 3-5 小時</div>
+          </div>
+          <div class="ba-arr">⭣</div>
+          <div class="ba-row good-b">
+            <div class="ba-lb good-b">✓ AI 自動化備課</div>
+            <div class="ba-vl hi-b">只需 15 分鐘</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div class="mod-card fade-up" style="grid-template-columns:1fr 1fr">
+      <div class="mod-visual" style="order:1">
+        <div class="ba-box">
+          <div class="ba-row bad">
+            <div class="ba-lb bad">✕ 過去招生圖文</div>
+            <div class="ba-vl">設計耗時、外包昂貴</div>
+          </div>
+          <div class="ba-arr">⭣</div>
+          <div class="ba-row good-r">
+            <div class="ba-lb good-r">✓ AI 產出圖文</div>
+            <div class="ba-vl hi-r">免設計費，1分鐘搞定</div>
+          </div>
+        </div>
+      </div>
+      <div class="mod-text" style="order:2">
+        <div class="mod-badge r">🎯 模組二：招生數位化</div>
+        <h3>不再花冤枉錢買廣告，用 AI 打造爆款內容</h3>
+        <ul class="mod-list">
+          <li><div class="chk-c r">✓</div>30 秒生成吸睛文案，抓住家長痛點與焦慮</li>
+          <li><div class="chk-c r">✓</div>自動生成社群圖文與短影音腳本，提升曝光率</li>
+          <li><div class="chk-c r">✓</div>取代外包行銷團隊，省下每月數萬元的代操費</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div class="mod-card fade-up">
+      <div class="mod-text">
+        <div class="mod-badge g">🏠 模組三：服務智能化</div>
+        <h3>24H 智能客服，不漏接任何一個潛在學生</h3>
+        <ul class="mod-list">
+          <li><div class="chk-c g">✓</div>串接 LINE 官方帳號，自動回覆家長常見問題</li>
+          <li><div class="chk-c g">✓</div>建立知識庫，讓 AI 學習你的專業口吻與溫度</li>
+          <li><div class="chk-c g">✓</div>自動化預約試聽與追蹤，大幅提高轉換率</li>
+        </ul>
+      </div>
+      <div class="mod-visual">
+        <div class="ba-box">
+          <div class="ba-row bad">
+            <div class="ba-lb bad">✕ 過去回覆訊息</div>
+            <div class="ba-vl">下班後還要回，容易漏接</div>
+          </div>
+          <div class="ba-arr">⭣</div>
+          <div class="ba-row good-g">
+            <div class="ba-lb good-g">✓ AI 智能客服</div>
+            <div class="ba-vl hi-g">24H 秒回，轉換率 UP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPARE ─── -->
+<section id="compare">
+  <div class="ctr">
+    <h2 class="cmp-title fade-up">
+      傳統補習班 <span class="vs">vs</span> <span class="tom">Tom AI 補教</span>
+    </h2>
+    <div class="cmp-wrap fade-up">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>傳統補習班</th>
+            <th>Tom AI 補教</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>社群招生</td>
+            <td><div class="xi">✕</div><div class="cmp-bad">手動發文/無成效</div></td>
+            <td><div class="ci">✓</div><div class="cmp-good">AI 秒生爆款圖文</div></td>
+          </tr>
+          <tr>
+            <td>LINE 回覆</td>
+            <td><div class="xi">✕</div><div class="cmp-bad">半夜親自回覆</div></td>
+            <td><div class="ci">✓</div><div class="cmp-good">24H 智能客服秒回</div></td>
+          </tr>
+          <tr>
+            <td>講義製作</td>
+            <td><div class="xi">✕</div><div class="cmp-bad">週末加班排版</div></td>
+            <td><div class="ci">✓</div><div class="cmp-good">AI 自動出題排版</div></td>
+          </tr>
+          <tr>
+            <td>招生系統</td>
+            <td><div class="xi">✕</div><div class="cmp-bad">昂貴代操費</div></td>
+            <td><div class="ci">✓</div><div class="cmp-good">手機就能搞定</div></td>
+          </tr>
+          <tr>
+            <td>人力成本</td>
+            <td><div class="xi">✕</div><div class="cmp-bad">需多聘請工讀生</div></td>
+            <td><div class="ci">✓</div><div class="cmp-good">省下 1-2 名人力</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BEFORE / AFTER DARK ─── -->
+<section id="badark">
+  <div class="bad-g">
+    <div class="bad-card before fade-up">
+      <div class="bad-hd"><span style="color:#F87171;font-size:22px">⊗</span> 導入前</div>
+      <ul class="bad-list">
+        <li>每天被行政雜事淹沒，回家只剩疲憊</li>
+        <li>競爭激烈，招生沒起色只能焦慮</li>
+        <li>校長兼撞鐘，沒時間思考長遠發展</li>
+      </ul>
+    </div>
+    <div class="bad-card after fade-up" style="transition-delay:.15s">
+      <div class="bad-hd"><span style="color:#60A5FA;font-size:22px">✓</span> 導入後</div>
+      <ul class="bad-list">
+        <li>自動化處理 80% 雜事，重拾生活品質</li>
+        <li>AI 24 小時精準行銷，新生源源不絕</li>
+        <li>騰出時間培育團隊，輕鬆擴大分部</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="ctr" style="text-align:center">
+    <h2 class="sec-title fade-up">老師心聲</h2>
+    <div class="tst-g">
+      <div class="tst-card fade-up">
+        <div class="tst-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tst-qi">"</div>
+        <p class="tst-txt">「導入後第一個月，我們就減少了週末加班排版的時間。現在 LINE 客服能自動回答 9 成以上的常態問題，家長滿意度反而更高！」</p>
+      </div>
+      <div class="tst-card fade-up" style="transition-delay:.1s">
+        <div class="tst-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tst-qi">"</div>
+        <p class="tst-txt">「原本要花 3 萬請代操，現在用 Tom 老師的 AI 指令，自己就能在一分鐘內產出高質感的 IG 貼文，招生詢問度提升了 40%。」</p>
+      </div>
+      <div class="tst-card fade-up" style="transition-delay:.2s">
+        <div class="tst-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tst-qi">"</div>
+        <p class="tst-txt">「這套系統最棒的是『不用寫程式』！我們幾個資深老師本來很抗拒新科技，結果跟著設定一次後，現在大家都離不開 AI 了。」</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq">
+  <div class="ctr">
+    <div class="faq-ic-w fade-up">💬</div>
+    <h2 class="faq-title fade-up">專業諮詢室</h2>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          沒技術背景能學會嗎？
+          <span class="faq-arrow">∨</span>
+        </button>
+        <div class="faq-a">完全不需要寫程式！Tom 老師設計的所有流程都以「手機操作」為核心，只要會用 LINE 和手機拍照，就能開始使用 AI 工具。課程採用手把手教學，確保每位學員都能實際上手。</div>
+      </div>
+      <div class="faq-item fade-up" style="transition-delay:.1s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          AI 回覆會太死板嗎？
+          <span class="faq-arrow">∨</span>
+        </button>
+        <div class="faq-a">不會！我們會協助您建立專屬知識庫，讓 AI 學習您補習班的口吻、風格和常見問題。AI 的回覆會越來越像您本人，家長通常感受不到差異，甚至滿意度更高。</div>
+      </div>
+      <div class="faq-item fade-up" style="transition-delay:.2s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          才藝類補習班也適用嗎？
+          <span class="faq-arrow">∨</span>
+        </button>
+        <div class="faq-a">完全適用！無論是音樂、美術、舞蹈、珠心算等才藝班，招生邏輯與行政流程都是相通的。Tom 老師已協助多家才藝補習班成功導入，效果同樣顯著。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <div class="ctr">
+    <h2 class="cta-title fade-up">準備好開始了嗎？</h2>
+    <div class="cta-badge fade-up">
+      <span class="pulsedot"></span>本月限量 30 名，目前剩 8 位
+    </div>
+    <div class="cta-card fade-up">
+      <div>
+        <div class="cta-old">原價 NT$ 30,000</div>
+        <div class="cta-new">限時免費 <span>諮詢</span></div>
+        <ul class="cta-list">
+          <li><span class="cta-chk">✓</span>2026 補教 AI 萬能指令包</li>
+          <li><span class="cta-chk">✓</span>LINE AI 智能客服佈置指南</li>
+          <li><span class="cta-chk">✓</span>教務提效自動化標準工作流</li>
+          <li><span class="cta-chk">✓</span>社群圖文內容批量生產工作流</li>
+          <li><span class="cta-chk">✓</span> 10 分鐘 1 v 1 經營診斷</li>
+        </ul>
+        <button class="btn-cta">立即卡位加 LINE</button>
+        <button class="btn-cta2">了解更多細節</button>
+      </div>
+     <div class="qr-side">
+  <div class="qr-title">請選擇一位顧問加入 LINE：</div>
+  <div class="qr-row">
+    <div class="qr-block">
+      <div class="qr-img" style="padding:0; overflow:hidden; border:none;">
+        <img src="qr-jiale.jpg" alt="家樂老師 LINE QR Code" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="qr-lbl">💬 家樂老師</div>
+    </div>
+    
+    <div class="qr-block">
+      <div class="qr-img" style="padding:0; overflow:hidden; border:none;">
+        <img src="qr-tom.jpg" alt="Tom 老師 LINE QR Code" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="qr-lbl">💬 Tom 老師</div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>© 2025 Tom AI 補教提效顧問 · All rights reserved</footer>
+
+<script>
+/* Navbar scroll */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+});
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+/* FAQ accordion */
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+/* Scroll-reveal */
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
