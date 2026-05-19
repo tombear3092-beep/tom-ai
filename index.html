@@ -304,6 +304,52 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
 /* ── SCROLL ANIMATIONS ── */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
 .fade-up.vis{opacity:1;transform:none;}
+
+/* 手機版模組排版修正 */
+@media (max-width: 900px) {
+  .mod-card,
+  .mod-card-reverse {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .mod-card-reverse .mod-visual {
+    order: 2;
+  }
+
+  .mod-card-reverse .mod-text {
+    order: 1;
+  }
+
+  .mod-text {
+    padding: 36px 24px;
+  }
+
+  .mod-visual {
+    padding: 28px 20px;
+  }
+
+  .mod-text h3 {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+
+  .mod-list li {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .ba-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .ba-vl {
+    word-break: normal;
+    line-height: 1.6;
+  }
+}
 </style>
 </head>
 <body>
@@ -537,8 +583,8 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
     </div>
 
     <!-- M2 -->
-    <div class="mod-card fade-up" style="grid-template-columns:1fr 1fr">
-      <div class="mod-visual" style="order:1">
+    <div class="mod-card fade-up mod-card-reverse">
+      <div class="mod-visual">
         <div class="ba-box">
           <div class="ba-row bad">
             <div class="ba-lb bad">✕ 過去招生圖文</div>
@@ -551,7 +597,7 @@ footer{background:var(--navy-m);padding:24px 2rem;text-align:center;color:rgba(2
           </div>
         </div>
       </div>
-      <div class="mod-text" style="order:2">
+      <div class="mod-text">
         <div class="mod-badge r">🎯 模組二：招生數位化</div>
         <h3>不再花冤枉錢買廣告，用 AI 打造爆款內容</h3>
         <ul class="mod-list">
