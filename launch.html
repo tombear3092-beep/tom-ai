@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAUNCH 教育學習系統｜擁抱AI-Tom老師</title>
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #6f6a63;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --line: #e7dccf;
+      --brown: #4b3527;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 241, 232, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 900;
+      color: var(--brown);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 15px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 80px 20px 56px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #e8f0ff;
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.12;
+      color: var(--brown);
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.22);
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(75, 53, 39, 0.08);
+    }
+
+    .hero-card h3 {
+      color: var(--brown);
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .hero-card ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin: 0 0 10px;
+      color: var(--brown);
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .module-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(75, 53, 39, 0.06);
+    }
+
+    .letter {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #e8f0ff;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .module-card h3 {
+      margin: 0 0 8px;
+      color: var(--brown);
+      font-size: 21px;
+    }
+
+    .module-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .stage {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 12px 32px rgba(75, 53, 39, 0.06);
+    }
+
+    .stage-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .stage h3 {
+      margin: 0;
+      color: var(--brown);
+      font-size: 26px;
+    }
+
+    .badge {
+      background: #f7f1e8;
+      border: 1px solid var(--line);
+      color: var(--brown);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .stage ul {
+      margin: 12px 0 16px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .result {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #eef5ff;
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #e8f0ff);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 46px 24px;
+      box-shadow: 0 18px 50px rgba(75, 53, 39, 0.08);
+    }
+
+    .cta h2 {
+      color: var(--brown);
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 0 0 12px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 26px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 36px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 54px;
+      }
+
+      .grid-6 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .grid-6 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">擁抱AI-Tom老師</a>
+      <nav class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="index.html#compare">超級比一比</a>
+        <a href="launch.html">服務方案</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="tag">LAUNCH 教育品牌 AI 實戰導入會員</div>
+        <h1>LAUNCH 教育學習系統</h1>
+        <p>
+          不是單純學 AI 工具，而是把 AI 真正導入你的招生頁、品牌形象、LINE 回覆、社群內容、影音課程與教材工具包。
+        </p>
+        <a href="#" class="btn">預約直播時間</a>
+      </div>
+
+      <div class="hero-card">
+        <h3>適合誰加入？</h3>
+        <ul>
+          <li>補習班老闆 / 主任</li>
+          <li>才藝老師 / 家教老師</li>
+          <li>講師 / 顧問</li>
+          <li>教育機構負責人</li>
+          <li>想用 AI 提升招生與營運效率的人</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>LAUNCH 六大模組</h2>
+        <p>依照你的當前需求，先選一個最重要的成果開始落地。</p>
+      </div>
+
+      <div class="grid-6">
+        <div class="module-card">
+          <div class="letter">L</div>
+          <h3>AI 招生頁 / 網站</h3>
+          <p>完成一頁式招生頁 / 個人品牌頁架構。</p>
+        </div>
+
+        <div class="module-card">
+          <div class="letter">A</div>
+          <h3>AI 品牌形象</h3>
+          <p>完成品牌定位、主題曲、MV 腳本與形象素材。</p>
+        </div>
+
+        <div class="module-card">
+          <div class="letter">U</div>
+          <h3>AI 自動回覆</h3>
+          <p>完成 LINE / 私訊 FAQ 與招生回覆話術。</p>
+        </div>
+
+        <div class="module-card">
+          <div class="letter">N</div>
+          <h3>AI 社群內容</h3>
+          <p>完成 30 天社群文宣、招生貼文與短影音方向。</p>
+        </div>
+
+        <div class="module-card">
+          <div class="letter">C</div>
+          <h3>AI 影音課程</h3>
+          <p>完成影音課大綱、腳本與銷售頁文案。</p>
+        </div>
+
+        <div class="module-card">
+          <div class="letter">H</div>
+          <h3>AI 教材工具包</h3>
+          <p>完成講義、題庫、詳解與重點整理模板。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>第 1 階段到第 6 階段</h2>
+        <p>每一階段都不是只看影片，而是要完成一個可使用的成果。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 1 階段：L｜AI 招生頁 / 網站</h3>
+            <span class="badge">招生轉化</span>
+          </div>
+          <ul>
+            <li>L-1 教育品牌為什麼需要一頁式招生頁</li>
+            <li>L-2 用 AI 規劃招生頁架構</li>
+            <li>L-3 用 AI 寫招生頁文案</li>
+            <li>L-4 招生頁如何導流 LINE / 表單</li>
+          </ul>
+          <div class="result">完成成果：產出一份可用於招生、試聽、諮詢的一頁式招生頁架構。</div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 2 階段：A｜AI 品牌形象</h3>
+            <span class="badge">品牌記憶點</span>
+          </div>
+          <ul>
+            <li>A-1 老師與教育機構如何打造品牌記憶點</li>
+            <li>A-2 用 AI 寫品牌主題曲歌詞</li>
+            <li>A-3 用 AI 規劃 MV 腳本</li>
+            <li>A-4 品牌形象如何用在招生內容</li>
+          </ul>
+          <div class="result">完成成果：完成品牌定位句、主題曲歌詞、MV 腳本與品牌素材應用表。</div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 3 階段：U｜AI LINE / 私訊自動回覆</h3>
+            <span class="badge">私域成交</span>
+          </div>
+          <ul>
+            <li>U-1 家長 / 學生常見問題如何整理</li>
+            <li>U-2 用 AI 寫招生回覆話術</li>
+            <li>U-3 設計試聽 / 諮詢 / 報名流程</li>
+            <li>U-4 LINE 自動回覆注意事項</li>
+          </ul>
+          <div class="result">完成成果：完成 FAQ 清單、LINE 話術表與私域成交流程。</div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 4 階段：N｜AI 社群內容與文宣</h3>
+            <span class="badge">穩定曝光</span>
+          </div>
+          <ul>
+            <li>N-1 教育品牌 30 天內容矩陣</li>
+            <li>N-2 用 AI 批量寫招生貼文</li>
+            <li>N-3 用 AI 產生海報文案與設計提示詞</li>
+            <li>N-4 內容如何導流 LINE 與直播</li>
+          </ul>
+          <div class="result">完成成果：完成 30 天內容主題表、一週貼文、海報文案與導流話術。</div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 5 階段：C｜AI 影音課程與銷售</h3>
+            <span class="badge">課程產品化</span>
+          </div>
+          <ul>
+            <li>C-1 老師如何設計可販售的影音課</li>
+            <li>C-2 用 AI 規劃影音課大綱</li>
+            <li>C-3 用 AI 寫影音課腳本</li>
+            <li>C-4 用 AI 寫銷售頁與報名文案</li>
+          </ul>
+          <div class="result">完成成果：完成影音課定位、課程大綱、一節影片腳本與銷售文案。</div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-top">
+            <h3>第 6 階段：H｜AI 教材工具包</h3>
+            <span class="badge">備課提效</span>
+          </div>
+          <ul>
+            <li>H-1 用 AI 整理單元重點</li>
+            <li>H-2 用 AI 生成講義</li>
+            <li>H-3 用 AI 生成題庫與考卷</li>
+            <li>H-4 用 AI 生成詳解與檢查錯誤</li>
+          </ul>
+          <div class="result">完成成果：完成一份重點整理、一份講義、一份測驗卷與詳解檢查表。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="cta">
+        <h2>不知道該從哪一個模組開始？</h2>
+        <p>
+          預約直播時間，現場看 Tom 老師示範 AI 如何導入你的教育品牌，並判斷你最該優先完成哪一個成果。
+        </p>
+        <a href="#" class="btn">預約直播時間</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 擁抱AI-Tom老師｜LAUNCH 教育學習系統
+  </footer>
+</body>
+</html>
